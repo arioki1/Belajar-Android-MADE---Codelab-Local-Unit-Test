@@ -7,7 +7,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 
@@ -39,5 +41,11 @@ public class MainPresenterTest {
     public void testVolumeWithZeroInput() {
         double volume = presenter.volume(0, 0, 0);
         assertEquals(0.0, volume, 0.0001);
+    }
+
+    @Test
+    public void testCalculateVolume() {
+        presenter.calculateVolume(11.1, 2.2, 1);
+        verify(view).showVolume(any(MainModel.class));
     }
 }
